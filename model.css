@@ -1,0 +1,222 @@
+/* ====== SEARCH BAR & SORT ====== */
+
+.search-filter-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.inventory-search-bar {
+  width: 100%;
+  max-width: 500px;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  background-color: #0f0f0f;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  color: #ffffff;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.inventory-search-bar:focus {
+  outline: none;
+  border-color: #d90429;
+  box-shadow: 0 0 15px rgba(217, 4, 41, 0.3);
+}
+
+.sort-dropdown {
+  padding: 1.2rem 1.4rem;
+  font-size: 1.1rem;
+  background-color: #0f0f0f;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.sort-dropdown:focus {
+  outline: none;
+  border-color: #d90429;
+}
+
+/* ====== FILTER BUTTONS ====== */
+
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: #0f0f0f;
+  color: #888888;
+  border: 1px solid #333333;
+  padding: 0.7rem 1.8rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: inherit;
+}
+
+.filter-btn:hover {
+  color: #ffffff;
+  border-color: #555555;
+}
+
+.filter-btn.active-filter {
+  background-color: #d90429;
+  color: #ffffff;
+  border-color: #d90429;
+}
+
+/* ====== VEHICLE COUNT DISPLAY ====== */
+
+/* Shows "Showing X of Y vehicles" below filters */
+.vehicle-count {
+  text-align: center;
+  color: #555555;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.vehicle-count span {
+  color: #d90429;
+  font-weight: 700;
+}
+
+/* ====== CAR INVENTORY GRID ====== */
+
+.car-inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+/* ====== CAR PRODUCT CARD ====== */
+
+.car-product-card {
+  background-color: #0f0f0f;
+  border-radius: 8px;
+  border: 1px solid #1a1a1a;
+  overflow: hidden;
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.car-product-card:hover {
+  transform: translateY(-10px);
+  border-color: #d90429;
+  box-shadow: 0 15px 40px rgba(217, 4, 41, 0.2);
+}
+
+/* Class added during filter transitions for fade effect */
+.car-product-card.card-hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.car-photo-container {
+  height: 280px;
+  overflow: hidden;
+  border-bottom: 1px solid #1a1a1a;
+  flex-shrink: 0;
+}
+
+.car-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.car-product-card:hover .car-photo {
+  transform: scale(1.05);
+}
+
+.car-information {
+  padding: 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.car-name {
+  font-size: 1.8rem;
+  margin: 0 0 1rem;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.car-specifications {
+  color: #888888;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.car-price {
+  color: #d90429;
+  font-weight: 900;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  margin-top: auto;
+}
+
+/* ====== NO RESULTS MESSAGE ====== */
+
+.no-results-msg {
+  text-align: center;
+  color: #444444;
+  font-size: 1.4rem;
+  padding: 5rem 0;
+  display: none;
+  width: 100%;
+}
+
+/* ====== RESPONSIVE BREAKPOINTS ====== */
+
+@media (max-width: 900px) {
+  .car-inventory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .car-inventory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .inventory-search-bar {
+    max-width: 100%;
+  }
+}

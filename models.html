@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velocity Motors | Our Vehicle Inventory</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="model.css" />
+  </head>
+  <body>
+    <!-- ====== HEADER & NAVIGATION ====== -->
+    <header class="main-header" id="main-header">
+      <a href="index.html" class="brand-logo">Velocity<span>Motors</span></a>
+      <button class="hamburger-btn" id="hamburger-btn">&#9776;</button>
+      <ul class="navigation-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="models.html">Inventory</a></li>
+        <li><a href="book.html">Test Drive</a></li>
+      </ul>
+    </header>
+
+    <!-- ====== INVENTORY MAIN CONTENT ====== -->
+    <main class="content-wrapper fade-in-section">
+      <h2 class="section-title">Current Inventory</h2>
+
+      <!-- ====== SEARCH & SORT BAR ====== -->
+      <div class="search-filter-bar">
+        <input
+          type="text"
+          id="vehicle-search"
+          class="inventory-search-bar"
+          placeholder="Search by model name..."
+        />
+        <select id="sort-select" class="sort-dropdown">
+          <option value="default">Sort By</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+        </select>
+      </div>
+
+      <!-- ====== FILTER BUTTONS ====== -->
+      <div class="filter-bar">
+        <button class="filter-btn active-filter" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="sedan">Sedan</button>
+        <button class="filter-btn" data-filter="suv">SUV</button>
+        <button class="filter-btn" data-filter="sports">Sports</button>
+        <button class="filter-btn" data-filter="ev">Electric</button>
+        <button class="filter-btn" data-filter="truck">Truck</button>
+      </div>
+
+      <!-- ====== VEHICLE COUNT DISPLAY ====== -->
+      <p class="vehicle-count" id="vehicle-count">
+        Showing <span id="count-visible">9</span> of
+        <span id="count-total">9</span> vehicles
+      </p>
+
+      <!-- ====== CAR INVENTORY GRID ====== -->
+      <div class="car-inventory-grid" id="inventory-grid">
+        <!-- Phantom Sedan -->
+        <div class="car-product-card" data-category="sedan" data-price="85000">
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"
+              alt="Phantom Sedan"
+              class="car-photo"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Phantom Sedan</h3>
+            <p class="car-specifications">
+              V8 Twin-Turbo &bull; Midnight Leather &bull; AWD
+            </p>
+            <p class="car-price">$85,000</p>
+            <a
+              href="book.html?car=phantom"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+
+        <!-- Obsidian SUV -->
+        <div class="car-product-card" data-category="suv" data-price="115500">
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80"
+              alt="Obsidian SUV"
+              class="car-photo"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Obsidian SUV</h3>
+            <p class="car-specifications">
+              V8 Engine &bull; Armored Glass &bull; Matte Finish
+            </p>
+            <p class="car-price">$115,500</p>
+            <a
+              href="book.html?car=obsidian"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+
+        <!-- Vortex GT Stealth -->
+        <div
+          class="car-product-card"
+          data-category="sports"
+          data-price="182000"
+        >
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+              alt="Vortex GT Stealth"
+              class="car-photo"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Vortex GT Stealth</h3>
+            <p class="car-specifications">
+              V10 Engine &bull; Carbon Fiber &bull; Track Ready
+            </p>
+            <p class="car-price">$182,000</p>
+            <a
+              href="book.html?car=vortex"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+
+        <!-- Electron EV Noir -->
+        <div class="car-product-card" data-category="ev" data-price="99900">
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=800&q=80"
+              alt="Electron EV Noir"
+              class="car-photo"
+              loading="lazy"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Electron EV Noir</h3>
+            <p class="car-specifications">
+              Tri-Motor &bull; 500mi Range &bull; Auto-Pilot
+            </p>
+            <p class="car-price">$99,900</p>
+            <a
+              href="book.html?car=electron"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+
+        <!-- Titan Shadow Truck -->
+        <div class="car-product-card" data-category="truck" data-price="78000">
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"
+              alt="Titan Shadow Truck"
+              class="car-photo"
+              loading="lazy"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Titan Shadow Truck</h3>
+            <p class="car-specifications">
+              4x4 Drivetrain &bull; Lift Kit &bull; Kevlar Tires
+            </p>
+            <p class="car-price">$78,000</p>
+            <a
+              href="book.html?car=titan"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+
+        <!-- Breeze Midnight -->
+        <div class="car-product-card" data-category="sports" data-price="65200">
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"
+              alt="Breeze Midnight"
+              class="car-photo"
+              loading="lazy"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Breeze Midnight</h3>
+            <p class="car-specifications">
+              Inline 6 &bull; Hardtop &bull; Alcantara Interior
+            </p>
+            <p class="car-price">$65,200</p>
+            <a
+              href="book.html?car=breeze"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+
+        <!-- Apex Hypercar -->
+        <div
+          class="car-product-card"
+          data-category="sports"
+          data-price="450000"
+        >
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=800&q=80"
+              alt="Apex Hypercar"
+              class="car-photo"
+              loading="lazy"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Apex Hypercar</h3>
+            <p class="car-specifications">
+              V12 Hybrid &bull; Active Aero &bull; Top Speed 220mph
+            </p>
+            <p class="car-price">$450,000</p>
+            <a
+              href="book.html?car=apex"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+
+        <!-- Horizon Crossover -->
+        <div class="car-product-card" data-category="suv" data-price="42500">
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80"
+              alt="Horizon Crossover"
+              class="car-photo"
+              loading="lazy"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Horizon Crossover</h3>
+            <p class="car-specifications">
+              Turbo 4-Cyl &bull; Hybrid Assist &bull; City Commuter
+            </p>
+            <p class="car-price">$42,500</p>
+            <a
+              href="book.html?car=horizon"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+
+        <!-- Zenith Executive -->
+        <div class="car-product-card" data-category="sedan" data-price="128000">
+          <div class="car-photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80"
+              alt="Zenith Executive"
+              class="car-photo"
+              loading="lazy"
+            />
+          </div>
+          <div class="car-information">
+            <h3 class="car-name">Zenith Executive</h3>
+            <p class="car-specifications">
+              V8 Supercharged &bull; Massaging Seats &bull; RWD
+            </p>
+            <p class="car-price">$128,000</p>
+            <a
+              href="book.html?car=zenith"
+              class="primary-button full-width-button"
+              >Reserve Now</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- No results fallback -->
+      <p class="no-results-msg" id="no-results-msg">
+        No vehicles match your search.
+      </p>
+    </main>
+
+    <script>
+      /* --- Active Navigation Link --- */
+      var currentPage =
+        window.location.pathname.split("/").pop() || "index.html";
+      document.querySelectorAll(".navigation-links a").forEach(function (link) {
+        if (link.getAttribute("href") === currentPage) {
+          link.classList.add("active-link");
+        }
+      });
+
+      /* --- Hamburger Menu Toggle --- */
+      document
+        .getElementById("hamburger-btn")
+        .addEventListener("click", function () {
+          document.getElementById("nav-links").classList.toggle("nav-open");
+        });
+
+      /* --- Header Shrink on Scroll --- */
+      window.addEventListener("scroll", function () {
+        var header = document.getElementById("main-header");
+        if (window.scrollY > 100) {
+          header.classList.add("header-shrunk");
+        } else {
+          header.classList.remove("header-shrunk");
+        }
+      });
+
+      /* --- Filter & Search Logic --- */
+      var activeCategory = "all";
+      var allCards = Array.from(document.querySelectorAll(".car-product-card"));
+      var totalCount = allCards.length;
+
+      /* Update the "Showing X of Y" counter */
+      function updateCount(visibleCount) {
+        document.getElementById("count-visible").innerText = visibleCount;
+        document.getElementById("count-total").innerText = totalCount;
+      }
+
+      function applyFilters() {
+        var searchVal = document
+          .getElementById("vehicle-search")
+          .value.toLowerCase();
+        var sortVal = document.getElementById("sort-select").value;
+        var grid = document.getElementById("inventory-grid");
+        var cards = Array.from(grid.querySelectorAll(".car-product-card"));
+
+        /* Determine which cards match current filters */
+        var visible = cards.filter(function (card) {
+          var name = card.querySelector(".car-name").innerText.toLowerCase();
+          var category = card.getAttribute("data-category");
+          var matchSearch = name.includes(searchVal);
+          var matchCategory =
+            activeCategory === "all" || category === activeCategory;
+          return matchSearch && matchCategory;
+        });
+
+        /* Sort visible cards if needed */
+        if (sortVal === "low") {
+          visible.sort(function (a, b) {
+            return (
+              parseInt(a.getAttribute("data-price")) -
+              parseInt(b.getAttribute("data-price"))
+            );
+          });
+        } else if (sortVal === "high") {
+          visible.sort(function (a, b) {
+            return (
+              parseInt(b.getAttribute("data-price")) -
+              parseInt(a.getAttribute("data-price"))
+            );
+          });
+        }
+
+        /* Fade out all cards first, then show matching ones */
+        cards.forEach(function (card) {
+          card.classList.add("card-hidden");
+          card.style.display = "none";
+        });
+
+        setTimeout(function () {
+          visible.forEach(function (card) {
+            card.style.display = "";
+            grid.appendChild(card);
+            /* Small delay before removing hidden class for smooth fade-in */
+            setTimeout(function () {
+              card.classList.remove("card-hidden");
+            }, 20);
+          });
+
+          /* Toggle no-results message */
+          document.getElementById("no-results-msg").style.display =
+            visible.length === 0 ? "block" : "none";
+
+          /* Update the vehicle count display */
+          updateCount(visible.length);
+        }, 200);
+      }
+
+      /* Attach event listeners to search and sort controls */
+      document
+        .getElementById("vehicle-search")
+        .addEventListener("input", applyFilters);
+      document
+        .getElementById("sort-select")
+        .addEventListener("change", applyFilters);
+
+      /* Attach click listeners to filter buttons */
+      document.querySelectorAll(".filter-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".filter-btn").forEach(function (b) {
+            b.classList.remove("active-filter");
+          });
+          btn.classList.add("active-filter");
+          activeCategory = btn.getAttribute("data-filter");
+          applyFilters();
+        });
+      });
+
+      /* Initialize the count on page load */
+      updateCount(totalCount);
+    </script>
+  </body>
+</html>

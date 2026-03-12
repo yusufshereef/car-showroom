@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velocity Motors | Schedule Test Drive</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="book.css" />
+  </head>
+  <body>
+    <!-- ====== HEADER & NAVIGATION ====== -->
+    <header class="main-header" id="main-header">
+      <a href="index.html" class="brand-logo">Velocity<span>Motors</span></a>
+      <button class="hamburger-btn" id="hamburger-btn">&#9776;</button>
+      <ul class="navigation-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="book.html">Test Drive</a></li>
+      </ul>
+    </header>
+
+    <!-- ====== BOOKING MAIN CONTENT ====== -->
+    <main class="content-wrapper fade-in-section">
+      <h2 class="section-title">Secure Your Drive</h2>
+
+      <!-- ====== BOOKING LAYOUT (Visual + Form) ====== -->
+      <div class="booking-layout" id="booking-layout">
+        <!-- Left: background image with branding text -->
+        <div class="booking-visual-side">
+          <h3 class="booking-visual-title">Awaken The Engine.</h3>
+          <p class="booking-visual-desc">
+            Submit your details below. A dedicated client advisor will contact
+            you within 15 minutes to confirm your exclusive track or street
+            experience.
+          </p>
+        </div>
+
+        <!-- Right: booking form -->
+        <div class="booking-form-side">
+          <!-- ====== FORM PROGRESS INDICATOR ====== -->
+          <div
+            class="form-progress"
+            id="form-progress"
+            aria-label="Booking progress"
+          >
+            <div class="progress-step step-active" id="step-1">1</div>
+            <div class="progress-connector" id="conn-1"></div>
+            <div class="progress-step" id="step-2">2</div>
+            <div class="progress-connector" id="conn-2"></div>
+            <div class="progress-step" id="step-3">3</div>
+            <div class="progress-connector" id="conn-3"></div>
+            <div class="progress-step" id="step-4">4</div>
+            <span class="progress-label" id="progress-label">Step 1 of 4</span>
+          </div>
+
+          <!-- ====== BOOKING FORM ====== -->
+          <form id="booking-form" action="#">
+            <!-- Field 1: Full Name -->
+            <div class="input-field-group">
+              <label for="client-name">Full Legal Name</label>
+              <input
+                type="text"
+                id="client-name"
+                placeholder="E.g., Bruce Wayne"
+                maxlength="50"
+              />
+              <span class="char-counter" id="char-counter"
+                >0 / 50 characters</span
+              >
+            </div>
+
+            <!-- Field 2: Email Address -->
+            <div class="input-field-group">
+              <label for="client-contact">Email Address</label>
+              <input
+                type="email"
+                id="client-contact"
+                placeholder="bruce@example.com"
+              />
+            </div>
+
+            <!-- Field 3: Vehicle of Interest -->
+            <div class="input-field-group">
+              <label for="vehicle-interest">Vehicle of Interest</label>
+              <select id="vehicle-interest">
+                <option value="">Select from inventory...</option>
+                <option value="phantom">Phantom Sedan</option>
+                <option value="obsidian">Obsidian SUV</option>
+                <option value="vortex">Vortex GT Stealth</option>
+                <option value="electron">Electron EV Noir</option>
+                <option value="titan">Titan Shadow Truck</option>
+                <option value="breeze">Breeze Midnight</option>
+                <option value="apex">Apex Hypercar</option>
+                <option value="horizon">Horizon Crossover</option>
+                <option value="zenith">Zenith Executive</option>
+              </select>
+            </div>
+
+            <!-- Field 4: Requested Date -->
+            <div class="input-field-group">
+              <label for="visit-date">Requested Date</label>
+              <input type="date" id="visit-date" />
+            </div>
+
+            <button type="submit" class="primary-button full-width-button">
+              Confirm Booking
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      /* --- Active Navigation Link --- */
+      var currentPage =
+        window.location.pathname.split("/").pop() || "index.html";
+      document.querySelectorAll(".navigation-links a").forEach(function (link) {
+        if (link.getAttribute("href") === currentPage) {
+          link.classList.add("active-link");
+        }
+      });
+
+      /* --- Hamburger Menu Toggle --- */
+      document
+        .getElementById("hamburger-btn")
+        .addEventListener("click", function () {
+          document.getElementById("nav-links").classList.toggle("nav-open");
+        });
+
+      /* --- Header Shrink on Scroll --- */
+      window.addEventListener("scroll", function () {
+        var header = document.getElementById("main-header");
+        if (window.scrollY > 100) {
+          header.classList.add("header-shrunk");
+        } else {
+          header.classList.remove("header-shrunk");
+        }
+      });
+
+      /* --- Set minimum date to today --- */
+      var today = new Date().toISOString().split("T")[0];
+      document.getElementById("visit-date").setAttribute("min", today);
+
+      /* --- Pre-select vehicle from URL parameter --- */
+      var params = new URLSearchParams(window.location.search);
+      var carParam = params.get("car");
+      if (carParam) {
+        document.getElementById("vehicle-interest").value = carParam;
+      }
+
+      /* --- Clear error styles on field focus --- */
+      document
+        .querySelectorAll(".input-field-group input, .input-field-group select")
+        .forEach(function (input) {
+          input.addEventListener("focus", function () {
+            this.classList.remove("error-border");
+            var err = this.parentNode.querySelector(".field-error");
+            if (err) err.remove();
+          });
+        });
+
+      /* --- Character Counter for Name Field --- */
+      var nameInput = document.getElementById("client-name");
+      var charCounter = document.getElementById("char-counter");
+      var maxChars = 50;
+
+      nameInput.addEventListener("input", function () {
+        var len = nameInput.value.length;
+        charCounter.innerText = len + " / " + maxChars + " characters";
+        /* Highlight counter red when near the limit (45+ chars) */
+        if (len >= 45) {
+          charCounter.classList.add("near-limit");
+        } else {
+          charCounter.classList.remove("near-limit");
+        }
+        updateProgress();
+      });
+
+      /* --- Form Progress Indicator --- */
+      /* Counts how many of the 4 fields have been filled */
+      var fields = [
+        document.getElementById("client-name"),
+        document.getElementById("client-contact"),
+        document.getElementById("vehicle-interest"),
+        document.getElementById("visit-date"),
+      ];
+
+      function updateProgress() {
+        var filledCount = 0;
+        fields.forEach(function (field) {
+          if (field.value.trim() !== "") filledCount++;
+        });
+
+        var stepEl, connEl;
+        for (var i = 1; i <= 4; i++) {
+          stepEl = document.getElementById("step-" + i);
+          stepEl.classList.remove("step-done", "step-active");
+
+          if (i <= filledCount) {
+            stepEl.classList.add("step-done");
+          } else if (i === filledCount + 1) {
+            stepEl.classList.add("step-active");
+          }
+
+          /* Update connector lines between steps */
+          if (i < 4) {
+            connEl = document.getElementById("conn-" + i);
+            connEl.classList.toggle("connector-done", i <= filledCount);
+          }
+        }
+
+        var stepText = Math.min(filledCount + 1, 4);
+        document.getElementById("progress-label").innerText =
+          "Step " + stepText + " of 4";
+      }
+
+      /* Listen for changes on all form fields to update progress */
+      fields.forEach(function (field) {
+        field.addEventListener("input", updateProgress);
+        field.addEventListener("change", updateProgress);
+      });
+
+      /* Initialize progress on page load (e.g., if vehicle was pre-selected) */
+      updateProgress();
+
+      /* --- Form Validation & Submission --- */
+      document
+        .getElementById("booking-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var emailInput = document.getElementById("client-contact");
+          var vehicleInput = document.getElementById("vehicle-interest");
+          var dateInput = document.getElementById("visit-date");
+
+          /* Clear previous errors */
+          document.querySelectorAll(".field-error").forEach(function (el) {
+            el.remove();
+          });
+          document.querySelectorAll(".error-border").forEach(function (el) {
+            el.classList.remove("error-border");
+          });
+
+          var valid = true;
+
+          function showError(input, msg) {
+            input.classList.add("error-border");
+            var err = document.createElement("span");
+            err.className = "field-error";
+            err.innerText = msg;
+            input.parentNode.appendChild(err);
+            valid = false;
+          }
+
+          if (!nameInput.value.trim()) {
+            showError(nameInput, "Please enter your full name.");
+          }
+
+          var emailVal = emailInput.value.trim();
+          if (!emailVal || !emailVal.includes("@") || !emailVal.includes(".")) {
+            showError(emailInput, "Please enter a valid email address.");
+          }
+
+          if (!vehicleInput.value) {
+            showError(vehicleInput, "Please select a vehicle.");
+          }
+
+          if (!dateInput.value) {
+            showError(dateInput, "Please select a date.");
+          }
+
+          if (!valid) return;
+
+          /* Build success message content */
+          var firstName = nameInput.value.trim().split(" ")[0];
+          var vehicleText =
+            vehicleInput.options[vehicleInput.selectedIndex].text;
+          var selectedDate = new Date(dateInput.value + "T00:00:00");
+          var formattedDate = selectedDate.toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+          /* Replace booking layout with success state */
+          document.getElementById("booking-layout").innerHTML =
+            '<div class="booking-success">' +
+            '<div class="booking-success-icon">&#10003;</div>' +
+            "<h2>Booking Confirmed</h2>" +
+            "<p>Thank you, <strong>" +
+            firstName +
+            "</strong>. Your test drive for the <strong>" +
+            vehicleText +
+            "</strong> on <strong>" +
+            formattedDate +
+            "</strong> has been received.</p>" +
+            "<p>A client advisor will contact you at <strong>" +
+            emailInput.value.trim() +
+            "</strong> within 15 minutes.</p>" +
+            '<a href="models.html" class="primary-button">Back to Inventory</a>' +
+            '<p class="booking-countdown" id="booking-countdown">' +
+            'Redirecting to inventory in <span id="countdown-num">10</span>s&hellip;</p>' +
+            "</div>";
+
+          /* --- Confirmation Countdown: redirect after 10 seconds --- */
+          var countdownEl = document.getElementById("countdown-num");
+          var secondsLeft = 10;
+
+          var countdownTimer = setInterval(function () {
+            secondsLeft--;
+            if (countdownEl) countdownEl.innerText = secondsLeft;
+            if (secondsLeft <= 0) {
+              clearInterval(countdownTimer);
+              window.location.href = "models.html";
+            }
+          }, 1000);
+        });
+    </script>
+  </body>
+</html>
